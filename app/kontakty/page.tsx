@@ -91,8 +91,36 @@ export default function Page() {
               <dd>{company.hours}</dd>
             </div>
           </dl>
-          <div style={{ aspectRatio: '4/3', background: 'var(--boneDeep)' }}>
-            {/* embed Yandex Maps iframe later; placeholder for now */}
+          <div>
+            <div
+              style={{
+                position: 'relative',
+                aspectRatio: '4/3',
+                background: 'var(--boneDeep)',
+                overflow: 'hidden',
+              }}
+            >
+              <iframe
+                src={`https://yandex.ru/map-widget/v1/?ll=${company.coords.lng}%2C${company.coords.lat}&z=15&pt=${company.coords.lng},${company.coords.lat},pm2rdm`}
+                loading="lazy"
+                title="Карта офиса LuxOkna в Грозном"
+                style={{ border: 0, width: '100%', height: '100%' }}
+              />
+            </div>
+            <a
+              href={`https://yandex.ru/maps/?ll=${company.coords.lng},${company.coords.lat}&z=15&pt=${company.coords.lng},${company.coords.lat},pm2rdm`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                marginTop: 12,
+                fontFamily: 'var(--font-mono)',
+                fontSize: 13,
+                color: 'var(--sand)',
+              }}
+            >
+              Открыть в Яндекс.Картах →
+            </a>
           </div>
         </div>
       </section>

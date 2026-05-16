@@ -7,6 +7,7 @@ import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import { blurProps } from '@/lib/blur'
 import * as r from '@/app/styles/responsive.css'
 
 const SVC = getService('podokonniki')!
@@ -44,7 +45,7 @@ export default function Page() {
             width: '100%',
           } as React.CSSProperties}
         >
-          <Image src={SVC.hero.image} alt={SVC.hero.alt} fill priority sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 60vw" style={{ objectFit: 'cover' }} />
+          <Image src={SVC.hero.image} alt={SVC.hero.alt} fill priority sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 60vw" style={{ objectFit: 'cover' }} {...blurProps(SVC.hero.image)} />
         </div>
       </section>
 

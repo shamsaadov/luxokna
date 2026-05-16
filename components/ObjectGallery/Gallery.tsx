@@ -39,7 +39,9 @@ export function Gallery({ items }: { items: ObjectItem[] }) {
         {filtered.map((o) => (
           <button
             key={o.slug}
+            type="button"
             onClick={() => setLightbox(o)}
+            aria-label={`Открыть фото: ${o.title}`}
             style={{ textAlign: 'left' }}
           >
             <ObjectCard item={o} />

@@ -9,6 +9,7 @@ import { ServiceCard } from '@/components/ServiceCard/ServiceCard'
 import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { Marquee } from '@/components/Marquee/Marquee'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import { blurProps } from '@/lib/blur'
 import * as r from './styles/responsive.css'
 
 export const metadata = makeMetadata(seo.home, '/')
@@ -58,6 +59,7 @@ export default function HomePage() {
             priority
             sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 60vw"
             style={{ objectFit: 'cover' }}
+            {...blurProps('/images/home/hero.jpg')}
           />
         </div>
       </section>

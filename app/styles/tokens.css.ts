@@ -8,7 +8,8 @@ export const vars = createGlobalTheme(':root', {
     charSoft: '#3A332C',
     copper: '#A85031',
     copperDeep: '#7D3A22',
-    sand: '#7A6A52',
+    // WCAG AA: contrast 5.52:1 on --bone and 6.02:1 on --paper (was #7A6A52 → 4.45/4.85).
+    sand: '#6A5C45',
     rule: 'rgba(26, 23, 20, 0.12)',
     paper: '#FAF6EC',
   },

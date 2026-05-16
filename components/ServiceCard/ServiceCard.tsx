@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { CSSProperties } from 'react'
 import type { Service } from '@/content/services'
+import { blurProps } from '@/lib/blur'
 import * as s from './ServiceCard.css'
 
 export function ServiceCard({ service }: { service: Service }) {
@@ -24,6 +25,7 @@ export function ServiceCard({ service }: { service: Service }) {
           fill
           style={{ objectFit: 'cover' }}
           sizes="100vw"
+          {...blurProps(service.hero.image)}
         />
       </div>
     </Link>

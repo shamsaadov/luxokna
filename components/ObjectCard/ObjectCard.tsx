@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { CSSProperties } from 'react'
 import type { ObjectItem } from '@/content/objects'
+import { blurProps } from '@/lib/blur'
 import * as s from './ObjectCard.css'
 
 export function ObjectCard({ item }: { item: ObjectItem }) {
@@ -19,6 +20,7 @@ export function ObjectCard({ item }: { item: ObjectItem }) {
           fill
           style={{ objectFit: 'cover' }}
           sizes="(max-width: 768px) 50vw, 25vw"
+          {...blurProps(img.src)}
         />
       </div>
       <div className={s.meta}>
