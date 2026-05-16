@@ -78,6 +78,21 @@ test('object grid: at least one image has a blur placeholder applied', async ({
   expect(has).toBe(true)
 })
 
+test('favicon: /icon.svg is served with 200', async ({ request }) => {
+  const r = await request.get('/icon.svg')
+  expect(r.status()).toBe(200)
+  const ct = r.headers()['content-type'] ?? ''
+  expect(ct).toContain('image/svg')
+})
+
+test('404 page: unknown route renders branded not-found', async ({ page }) => {
+  const r = await page.goto('/nonexistent-route-xyz')
+  expect(r?.status()).toBe(404)
+  await expect(page.locator('h1')).toContainText('404')
+  await expect(page.getByRole('heading', { name: /Окно закрыто/i })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Вернуться на главную/i })).toBeVisible()
+})
+
 test('all top-level routes 200', async ({ page }) => {
   for (const path of [
     '/',

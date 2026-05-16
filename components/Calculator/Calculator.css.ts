@@ -23,14 +23,30 @@ export const drawer = style({
   backgroundColor: vars.color.bone,
   borderLeft: `${vars.rule.thin} solid ${vars.color.char}`,
   display: 'grid',
-  gridTemplateRows: 'auto 1fr auto',
+  gridTemplateRows: 'auto auto 1fr auto',
   zIndex: 201,
   animation: `${slideIn} ${vars.duration.base} ${vars.ease.out}`,
   outline: 'none',
+  touchAction: 'pan-y',
+  willChange: 'transform',
   '@media': {
     'screen and (max-width: 640px)': {
       width: '100vw',
       borderLeft: 0,
+    },
+  },
+})
+
+export const grabber = style({
+  display: 'none',
+  width: 32,
+  height: 3,
+  margin: '8px auto 0',
+  borderRadius: 999,
+  backgroundColor: vars.color.rule,
+  '@media': {
+    'screen and (max-width: 640px)': {
+      display: 'block',
     },
   },
 })

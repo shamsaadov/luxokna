@@ -94,6 +94,64 @@ test('/uslugi/okna: hero text visible without overlap', async ({ page }) => {
   }
 })
 
+test('swipe right on drawer closes it (mobile only)', async ({ page, viewport, browserName }) => {
+  test.skip(!viewport || viewport.width > 640, 'swipe gesture is mobile-only')
+  // WebKit's TouchEvent constructor rejects plain Touch-like literals; the
+  // production handler is unit-tested in tests/unit/swipe.test.ts. Skip the
+  // e2e simulation on WebKit and trust the handler unit test there.
+  test.skip(browserName === 'webkit', 'WebKit synthetic TouchEvent is unreliable; covered by unit test')
+
+  await page.goto('/')
+  await page.waitForLoadState('networkidle')
+
+  // Open the drawer via hamburger → calc CTA (mirrors the existing test).
+  await page.evaluate(() => {
+    const btns = Array.from(document.querySelectorAll('button')) as HTMLButtonElement[]
+    const visible = (el: HTMLElement) => {
+      const cs = getComputedStyle(el)
+      if (cs.display === 'none' || cs.visibility === 'hidden') return false
+      const r = el.getBoundingClientRect()
+      return r.width > 0 && r.height > 0
+    }
+    const direct = btns.find((b) => visible(b) && /Рассчитать/.test(b.textContent ?? ''))
+    if (direct) return direct.click()
+    const hamburger = btns.find(
+      (b) => visible(b) && b.getAttribute('aria-label') === 'Открыть меню',
+    )
+    hamburger?.click()
+  })
+  await page.evaluate(() => {
+    const btns = Array.from(document.querySelectorAll('button')) as HTMLButtonElement[]
+    const cta = btns.find((b) => /Рассчитать проём/.test(b.textContent ?? ''))
+    cta?.click()
+  })
+
+  const drawer = page.locator('[role="dialog"][aria-modal="true"]').first()
+  await expect(drawer).toBeVisible()
+
+  // Simulate a clean rightward swipe by firing the same touch events the
+  // component listens for. Playwright's touchscreen.swipe API isn't available
+  // in this version, so we dispatch synthetic Touch events instead.
+  await drawer.evaluate((el) => {
+    const make = (type: string, x: number, y: number) => {
+      const touch = { clientX: x, clientY: y, identifier: 0, target: el } as unknown as Touch
+      const ev = new TouchEvent(type, {
+        bubbles: true,
+        cancelable: true,
+        touches: type === 'touchend' ? [] : [touch],
+        changedTouches: [touch],
+        targetTouches: type === 'touchend' ? [] : [touch],
+      })
+      el.dispatchEvent(ev)
+    }
+    make('touchstart', 40, 200)
+    make('touchmove', 180, 210)
+    make('touchend', 220, 215)
+  })
+
+  await expect(drawer).toBeHidden()
+})
+
 test('calculator drawer is fullscreen-ish on mobile', async ({ page }) => {
   await page.goto('/')
   await page.waitForLoadState('networkidle')

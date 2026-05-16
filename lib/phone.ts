@@ -1,4 +1,4 @@
-import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { parsePhoneNumberFromString } from 'libphonenumber-js/min'
 
 export function formatRuPhoneMask(input: string): string {
   const digits = input.replace(/\D/g, '').replace(/^[78]/, '')
