@@ -5,6 +5,7 @@ import Image from 'next/image'
 import type { ObjectItem } from '@/content/objects'
 import { ObjectCard } from '../ObjectCard/ObjectCard'
 import { Close } from '../icons/Close'
+import * as s from './Gallery.css'
 
 const SERVICES = ['all', 'okna', 'dveri', 'vitrazhi', 'podokonniki'] as const
 type Filter = (typeof SERVICES)[number]
@@ -21,38 +22,20 @@ export function Gallery({ items }: { items: ObjectItem[] }) {
 
   return (
     <>
-      <nav
-        style={{
-          display: 'flex',
-          gap: 16,
-          padding: '0 64px',
-          fontFamily: 'var(--font-mono)',
-          fontSize: 13,
-          textTransform: 'uppercase',
-        }}
-      >
-        {SERVICES.map((s) => (
+      <nav className={s.nav}>
+        {SERVICES.map((svc) => (
           <button
-            key={s}
-            onClick={() => setFilter(s)}
-            style={{
-              padding: '8px 0',
-              borderBottom:
-                filter === s ? '2px solid var(--copper)' : '2px solid transparent',
-            }}
+            key={svc}
+            onClick={() => setFilter(svc)}
+            className={[s.filterBtn, filter === svc ? s.filterActive : '']
+              .filter(Boolean)
+              .join(' ')}
           >
-            {s === 'all' ? 'Все' : s}
+            {svc === 'all' ? 'Все' : svc}
           </button>
         ))}
       </nav>
-      <div
-        style={{
-          padding: '32px 64px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 16,
-        }}
-      >
+      <div className={s.grid}>
         {filtered.map((o) => (
           <button
             key={o.slug}

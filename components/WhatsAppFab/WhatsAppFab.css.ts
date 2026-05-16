@@ -16,6 +16,13 @@ export const root = style({
   color: vars.color.paper,
   border: `${vars.rule.thin} solid ${vars.color.char}`,
   willChange: 'transform',
-  transition: `background ${vars.duration.fast} ${vars.ease.out}`,
+  transition: `background ${vars.duration.fast} ${vars.ease.out}, bottom ${vars.duration.base} ${vars.ease.out}`,
   selectors: { '&:hover': { backgroundColor: vars.color.copperDeep } },
+  // Lift up on mobile so it stays clear of the fixed bottom CTA bar.
+  '@media': {
+    'screen and (max-width: 640px)': {
+      bottom: 96,
+      right: vars.space.x4,
+    },
+  },
 })

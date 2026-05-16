@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import * as s from './Header.css'
 import { MagneticButton } from '../MagneticButton/MagneticButton'
+import { MobileMenu } from './MobileMenu'
 
 const NAV = [
   { href: '/uslugi/okna', label: 'Окна' },
@@ -40,8 +41,11 @@ export function Header({ onCalcOpen }: { onCalcOpen: () => void }) {
           </Link>
         ))}
       </nav>
-      <div className={s.cta}>
-        <MagneticButton onClick={onCalcOpen}>Рассчитать</MagneticButton>
+      <div className={s.actions}>
+        <div className={s.cta}>
+          <MagneticButton onClick={onCalcOpen}>Рассчитать</MagneticButton>
+        </div>
+        <MobileMenu items={NAV} onCalcOpen={onCalcOpen} />
       </div>
     </header>
   )

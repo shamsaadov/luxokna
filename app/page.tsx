@@ -9,22 +9,15 @@ import { ServiceCard } from '@/components/ServiceCard/ServiceCard'
 import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { Marquee } from '@/components/Marquee/Marquee'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import * as r from './styles/responsive.css'
 
 export const metadata = makeMetadata(seo.home, '/')
 
 export default function HomePage() {
   return (
-    <article style={{ paddingLeft: 'var(--side, 64px)' }}>
+    <article className={r.article}>
       {/* Hero */}
-      <section
-        style={{
-          minHeight: '92vh',
-          display: 'grid',
-          gridTemplateColumns: '5fr 7fr',
-          alignItems: 'end',
-          padding: '160px 64px 64px',
-        }}
-      >
+      <section className={r.hero}>
         <div>
           <p
             style={{
@@ -37,14 +30,7 @@ export default function HomePage() {
           >
             16.05.26 · GROZNY 43°N
           </p>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 96,
-              lineHeight: 1.02,
-              fontVariationSettings: '"SOFT" 60, "WONK" 1',
-            }}
-          >
+          <h1 className={r.heroTitle}>
             Свет.
             <br />
             Тишина.
@@ -62,6 +48,7 @@ export default function HomePage() {
             aspectRatio: '4/5',
             overflow: 'hidden',
             background: 'var(--boneDeep)',
+            width: '100%',
           }}
         >
           <Image
@@ -69,7 +56,7 @@ export default function HomePage() {
             alt="Премиум-окна LuxOkna"
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 60vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 60vw"
             style={{ objectFit: 'cover' }}
           />
         </div>
@@ -88,7 +75,7 @@ export default function HomePage() {
       />
 
       {/* 4 services */}
-      <section style={{ padding: '96px 64px' }}>
+      <section className={r.section}>
         <SectionNumber n="01" title="Услуги" />
         <div style={{ marginTop: 48 }}>
           {services.map((s) => (
@@ -98,16 +85,9 @@ export default function HomePage() {
       </section>
 
       {/* Portfolio strip */}
-      <section style={{ padding: '96px 64px', background: 'var(--paper)' }}>
+      <section className={r.section} style={{ background: 'var(--paper)' }}>
         <SectionNumber n="02" title="Объекты" />
-        <div
-          style={{
-            marginTop: 48,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 24,
-          }}
-        >
+        <div className={r.grid3} style={{ marginTop: 48 }}>
           {objects.slice(0, 6).map((o) => (
             <ObjectCard key={o.slug} item={o} />
           ))}
@@ -115,16 +95,9 @@ export default function HomePage() {
       </section>
 
       {/* Process */}
-      <section style={{ padding: '96px 64px' }}>
+      <section className={r.section}>
         <SectionNumber n="03" title="Процесс" />
-        <ol
-          style={{
-            marginTop: 48,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: 24,
-          }}
-        >
+        <ol className={r.grid5} style={{ marginTop: 48 }}>
           {process.map((p) => (
             <li key={p.n}>
               <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--copper)' }}>
@@ -140,19 +113,12 @@ export default function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section style={{ padding: '96px 64px', background: 'var(--paper)' }}>
+      <section className={r.section} style={{ background: 'var(--paper)' }}>
         <SectionNumber n="04" title="Отзывы" />
-        <div
-          style={{
-            marginTop: 48,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 24,
-          }}
-        >
-          {reviews.slice(0, 6).map((r, i) => (
+        <div className={r.grid3} style={{ marginTop: 48 }}>
+          {reviews.slice(0, 6).map((rv, i) => (
             <blockquote key={i}>
-              <p>«{r.text}»</p>
+              <p>«{rv.text}»</p>
               <footer
                 style={{
                   marginTop: 12,
@@ -161,7 +127,7 @@ export default function HomePage() {
                   color: 'var(--sand)',
                 }}
               >
-                — {r.author}, {r.city}
+                — {rv.author}, {rv.city}
               </footer>
             </blockquote>
           ))}

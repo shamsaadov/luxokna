@@ -22,6 +22,9 @@ export const track = style({
   gap: vars.space.x7,
   whiteSpace: 'nowrap',
   animation: `${slide} 60s linear infinite`,
+  selectors: {
+    [`${wrap}:hover &`]: { animationPlayState: 'paused' },
+  },
 })
 
 export const item = style({

@@ -27,6 +27,28 @@ export const drawer = style({
   zIndex: 201,
   animation: `${slideIn} ${vars.duration.base} ${vars.ease.out}`,
   outline: 'none',
+  '@media': {
+    'screen and (max-width: 640px)': {
+      width: '100vw',
+      borderLeft: 0,
+    },
+  },
+})
+
+export const body = style({
+  padding: vars.space.x6,
+  overflowY: 'auto',
+  '@media': {
+    'screen and (max-width: 640px)': { padding: vars.space.x5 },
+  },
+})
+
+export const footer = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: vars.space.x5,
+  borderTop: `${vars.rule.hair} solid ${vars.color.rule}`,
 })
 
 export const header = style({
@@ -56,19 +78,6 @@ export const close = style({
   border: `${vars.rule.hair} solid ${vars.color.rule}`,
   backgroundColor: 'transparent',
   cursor: 'pointer',
-})
-
-export const body = style({
-  padding: vars.space.x6,
-  overflowY: 'auto',
-})
-
-export const footer = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: vars.space.x5,
-  borderTop: `${vars.rule.hair} solid ${vars.color.rule}`,
 })
 
 export const backBtn = style({

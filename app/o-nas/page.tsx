@@ -3,31 +3,19 @@ import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { brands } from '@/content/brands'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import * as r from '@/app/styles/responsive.css'
 
 export const metadata = makeMetadata(seo.oNas, '/o-nas')
 
 export default function Page() {
   return (
-    <article style={{ paddingLeft: 64 }}>
-      <section
-        style={{
-          padding: '160px 64px 64px',
-          display: 'grid',
-          gridTemplateColumns: '5fr 7fr',
-          gap: 48,
-        }}
-      >
+    <article className={r.article}>
+      <section className={r.hero}>
         <div>
           <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--sand)' }}>
             {company.yearsOnMarket}+ ЛЕТ
           </p>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 72,
-              lineHeight: 1.05,
-            }}
-          >
+          <h1 className={r.heroTitleSm}>
             Окна — это деталь, но именно через них мы смотрим на мир.
           </h1>
         </div>
@@ -45,16 +33,9 @@ export default function Page() {
         </div>
       </section>
 
-      <section style={{ padding: '96px 64px', background: 'var(--paper)' }}>
+      <section className={r.section} style={{ background: 'var(--paper)' }}>
         <SectionNumber n="01" title="Партнёры-системы" />
-        <div
-          style={{
-            marginTop: 32,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 48,
-          }}
-        >
+        <div className={r.grid3} style={{ marginTop: 32, gap: 48 }}>
           {brands.map((b) => (
             <div key={b.slug}>
               <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 32 }}>

@@ -3,102 +3,101 @@ import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { generalFaq } from '@/content/faq'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import * as r from '@/app/styles/responsive.css'
 
 export const metadata = makeMetadata(seo.kontakty, '/kontakty')
 
 export default function Page() {
   return (
-    <article style={{ paddingLeft: 64 }}>
-      <section style={{ padding: '160px 64px 64px' }}>
+    <article className={r.article}>
+      <section
+        className={r.section}
+        style={{ paddingTop: 'clamp(96px, 22vw, 160px)' }}
+      >
         <SectionNumber n="∞" title="Контакты" />
       </section>
-      <section
-        style={{
-          padding: '0 64px 96px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 48,
-        }}
-      >
-        <dl style={{ display: 'grid', gap: 24 }}>
-          <div>
-            <dt
-              style={{
-                fontFamily: 'var(--font-mono)',
-                color: 'var(--sand)',
-                fontSize: 13,
-                textTransform: 'uppercase',
-              }}
-            >
-              Адрес
-            </dt>
-            <dd style={{ marginTop: 4 }}>{company.address}</dd>
+      <section className={r.section} style={{ paddingTop: 0, paddingBottom: 96 }}>
+        <div className={r.grid2}>
+          <dl style={{ display: 'grid', gap: 24 }}>
+            <div>
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--sand)',
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                }}
+              >
+                Адрес
+              </dt>
+              <dd style={{ marginTop: 4 }}>{company.address}</dd>
+            </div>
+            <div>
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--sand)',
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                }}
+              >
+                Телефон
+              </dt>
+              <dd>
+                <a href={`tel:${company.phone}`}>{company.phone}</a>
+              </dd>
+            </div>
+            <div>
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--sand)',
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                }}
+              >
+                WhatsApp
+              </dt>
+              <dd>
+                <a href={`https://wa.me/${company.whatsapp}`}>{company.phone}</a>
+              </dd>
+            </div>
+            <div>
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--sand)',
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                }}
+              >
+                Instagram
+              </dt>
+              <dd>
+                <a href={company.instagramUrl}>@{company.instagram}</a>
+              </dd>
+            </div>
+            <div>
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--sand)',
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                }}
+              >
+                Часы
+              </dt>
+              <dd>{company.hours}</dd>
+            </div>
+          </dl>
+          <div style={{ aspectRatio: '4/3', background: 'var(--boneDeep)' }}>
+            {/* embed Yandex Maps iframe later; placeholder for now */}
           </div>
-          <div>
-            <dt
-              style={{
-                fontFamily: 'var(--font-mono)',
-                color: 'var(--sand)',
-                fontSize: 13,
-                textTransform: 'uppercase',
-              }}
-            >
-              Телефон
-            </dt>
-            <dd>
-              <a href={`tel:${company.phone}`}>{company.phone}</a>
-            </dd>
-          </div>
-          <div>
-            <dt
-              style={{
-                fontFamily: 'var(--font-mono)',
-                color: 'var(--sand)',
-                fontSize: 13,
-                textTransform: 'uppercase',
-              }}
-            >
-              WhatsApp
-            </dt>
-            <dd>
-              <a href={`https://wa.me/${company.whatsapp}`}>{company.phone}</a>
-            </dd>
-          </div>
-          <div>
-            <dt
-              style={{
-                fontFamily: 'var(--font-mono)',
-                color: 'var(--sand)',
-                fontSize: 13,
-                textTransform: 'uppercase',
-              }}
-            >
-              Instagram
-            </dt>
-            <dd>
-              <a href={company.instagramUrl}>@{company.instagram}</a>
-            </dd>
-          </div>
-          <div>
-            <dt
-              style={{
-                fontFamily: 'var(--font-mono)',
-                color: 'var(--sand)',
-                fontSize: 13,
-                textTransform: 'uppercase',
-              }}
-            >
-              Часы
-            </dt>
-            <dd>{company.hours}</dd>
-          </div>
-        </dl>
-        <div style={{ aspectRatio: '4/3', background: 'var(--boneDeep)' }}>
-          {/* embed Yandex Maps iframe later; placeholder for now */}
         </div>
       </section>
 
-      <section style={{ padding: '96px 64px', background: 'var(--paper)' }}>
+      <section className={r.section} style={{ background: 'var(--paper)' }}>
         <SectionNumber n="?" title="Частые вопросы" />
         <dl style={{ marginTop: 32, maxWidth: 720 }}>
           {generalFaq.map((f) => (

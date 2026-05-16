@@ -7,6 +7,7 @@ import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import * as r from '@/app/styles/responsive.css'
 
 const SVC = getService('podokonniki')!
 const jsonLd = {
@@ -22,15 +23,15 @@ export const metadata = makeMetadata(seo.podokonniki, '/uslugi/podokonniki')
 export default function Page() {
   const objs = objects.filter((o) => o.service === 'podokonniki')
   return (
-    <article style={{ paddingLeft: 64 }}>
+    <article className={r.article}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section style={{ padding: '160px 64px 64px', display: 'grid', gridTemplateColumns: '5fr 7fr', gap: 48 }}>
+      <section className={r.hero}>
         <div>
           <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--copper)' }}>{SVC.number}</div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 96, lineHeight: 1.02 }}>{SVC.title}</h1>
+          <h1 className={r.heroTitle}>{SVC.title}</h1>
           <p style={{ marginTop: 24, maxWidth: 420 }}>{SVC.intro}</p>
         </div>
         <div
@@ -40,22 +41,23 @@ export default function Page() {
             viewTransitionName: 'service-podokonniki',
             background: 'var(--boneDeep)',
             overflow: 'hidden',
+            width: '100%',
           } as React.CSSProperties}
         >
-          <Image src={SVC.hero.image} alt={SVC.hero.alt} fill priority sizes="(max-width: 768px) 100vw, 60vw" style={{ objectFit: 'cover' }} />
+          <Image src={SVC.hero.image} alt={SVC.hero.alt} fill priority sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 60vw" style={{ objectFit: 'cover' }} />
         </div>
       </section>
 
-      <section style={{ padding: '96px 64px' }}>
+      <section className={r.section}>
         <SectionNumber n="A" title="Что входит" />
-        <ul style={{ marginTop: 32, columns: 2, columnGap: 48 }}>
+        <ul className={r.bulletsTwo} style={{ marginTop: 32 }}>
           {SVC.bullets.map((b) => <li key={b} style={{ padding: '12px 0', borderTop: '1px solid var(--rule)' }}>{b}</li>)}
         </ul>
       </section>
 
-      <section style={{ padding: '96px 64px', background: 'var(--paper)' }}>
+      <section className={r.section} style={{ background: 'var(--paper)' }}>
         <SectionNumber n="B" title="Бренды" />
-        <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+        <div className={r.grid3} style={{ marginTop: 32, gap: 32 }}>
           {brands.map((b) => (
             <div key={b.slug}>
               <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 32 }}>{b.name}</h4>
@@ -67,9 +69,9 @@ export default function Page() {
       </section>
 
       {objs.length > 0 && (
-        <section style={{ padding: '96px 64px' }}>
+        <section className={r.section}>
           <SectionNumber n="C" title="Объекты" />
-          <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className={r.grid3} style={{ marginTop: 32 }}>
             {objs.slice(0, 6).map((o) => <ObjectCard key={o.slug} item={o} />)}
           </div>
         </section>

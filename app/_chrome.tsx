@@ -6,6 +6,7 @@ import { SideRule } from '@/components/SideRule/SideRule'
 import { WhatsAppFab } from '@/components/WhatsAppFab/WhatsAppFab'
 import { Cursor } from '@/components/Cursor/Cursor'
 import { Calculator } from '@/components/Calculator/Calculator'
+import { MobileCtaBar } from '@/components/MobileCtaBar/MobileCtaBar'
 import { useSmoothScroll } from '@/lib/scroll'
 
 export function Chrome({
@@ -25,6 +26,7 @@ export function Chrome({
       <main>{children}</main>
       <Footer />
       <WhatsAppFab />
+      <MobileCtaBar onCalcOpen={() => setOpen(true)} hidden={open} />
       <Calculator open={open} onClose={() => setOpen(false)} />
     </>
   )

@@ -14,6 +14,11 @@ export const root = style({
   borderBottom: `${vars.rule.hair} solid ${vars.color.rule}`,
   transition: `transform ${vars.duration.base} ${vars.ease.out}`,
   selectors: { '&[data-hidden="true"]': { transform: 'translateY(-100%)' } },
+  '@media': {
+    'screen and (max-width: 768px)': {
+      padding: `${vars.space.x3} clamp(16px, 5vw, 24px)`,
+    },
+  },
 })
 
 export const logo = style({
@@ -33,4 +38,13 @@ export const nav = style({
   '@media': { 'screen and (max-width: 768px)': { display: 'none' } },
 })
 
-export const cta = style({ justifySelf: 'end' })
+export const actions = style({
+  justifySelf: 'end',
+  display: 'flex',
+  alignItems: 'center',
+  gap: vars.space.x3,
+})
+
+export const cta = style({
+  '@media': { 'screen and (max-width: 768px)': { display: 'none' } },
+})

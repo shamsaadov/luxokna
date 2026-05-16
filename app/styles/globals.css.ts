@@ -5,6 +5,7 @@ globalStyle('html', {
   fontSize: '16px',
   textRendering: 'optimizeLegibility',
   WebkitFontSmoothing: 'antialiased',
+  overflowX: 'hidden',
 })
 
 globalStyle('body', {
@@ -14,6 +15,7 @@ globalStyle('body', {
   fontSize: vars.fontSize.body,
   lineHeight: vars.lineHeight.body,
   fontFeatureSettings: '"ss01" on, "ss02" on',
+  overflowX: 'hidden',
 })
 
 globalStyle('::selection', {
