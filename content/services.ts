@@ -1,0 +1,78 @@
+export type ServiceSlug = 'okna' | 'dveri' | 'vitrazhi' | 'podokonniki'
+
+export interface Service {
+  slug: ServiceSlug
+  number: string          // '01'
+  title: string
+  tagline: string
+  hero: { image: string; alt: string }
+  intro: string           // 1-2 параграфа
+  bullets: string[]       // 4-6 коротких преимуществ
+  materials: string[]
+  brands: string[]
+  faq: { q: string; a: string }[]
+}
+
+export const services: Service[] = [
+  {
+    slug: 'okna',
+    number: '01',
+    title: 'Окна',
+    tagline: 'Свет, тишина, стиль',
+    hero: { image: '/images/services/okna.jpg', alt: 'Панорамное окно' },
+    intro:
+      'Системы Schüco, Rehau и Alutech для жилых и общественных пространств. Производство — собственный цех, монтаж — собственная бригада.',
+    bullets: [
+      '5-камерные ПВХ-профили',
+      'Алюминиевые системы с термомостом',
+      'Триплекс и энергосбережение',
+      'Гарантия на профиль до 40 лет',
+      'Замер и проектирование бесплатно',
+      'Монтаж по ГОСТ 30971-2012',
+    ],
+    materials: ['ПВХ', 'Алюминий'],
+    brands: ['Schüco', 'Rehau', 'Alutech'],
+    faq: [
+      { q: 'Сколько занимает монтаж?', a: 'Стандартное окно — 1–2 часа после демонтажа старого.' },
+      { q: 'Какая гарантия?', a: 'На профиль — до 40 лет, на монтаж — 5 лет.' },
+    ],
+  },
+  {
+    slug: 'dveri',
+    number: '02',
+    title: 'Двери',
+    tagline: 'Вход с характером',
+    hero: { image: '/images/services/dveri.jpg', alt: 'Входная дверь' },
+    intro: 'Алюминиевые и ПВХ-двери: входные, балконные, межкомнатные. Любые конфигурации, включая порталы.',
+    bullets: ['Алюминий Alutech', 'ПВХ Rehau', 'Порталы до 3 м', 'Цвет по RAL', 'Скрытые петли'],
+    materials: ['Алюминий', 'ПВХ'],
+    brands: ['Schüco', 'Rehau', 'Alutech'],
+    faq: [],
+  },
+  {
+    slug: 'vitrazhi',
+    number: '03',
+    title: 'Витражи',
+    tagline: 'Стекло от пола до потолка',
+    hero: { image: '/images/services/vitrazhi.jpg', alt: 'Алюминиевый витраж' },
+    intro: 'Стоечно-ригельные и структурные фасады. Проектируем под объект, согласуем нагрузки.',
+    bullets: ['Schüco FWS', 'Структурное остекление', 'Триплекс, мультифункциональные пакеты', 'Высота до 6 м'],
+    materials: ['Алюминий'],
+    brands: ['Schüco', 'Alutech'],
+    faq: [],
+  },
+  {
+    slug: 'podokonniki',
+    number: '04',
+    title: 'Подоконники',
+    tagline: 'Деталь, на которую смотрят каждый день',
+    hero: { image: '/images/services/podokonniki.jpg', alt: 'Каменный подоконник' },
+    intro: 'Натуральный камень, кварцевый агломерат, массив дерева. Раскрой и установка под объект.',
+    bullets: ['Гранит, мрамор', 'Кварц', 'Массив дуба, ясеня', 'Раскрой ЧПУ'],
+    materials: ['Камень', 'Кварц', 'Дерево'],
+    brands: [],
+    faq: [],
+  },
+]
+
+export const getService = (slug: ServiceSlug) => services.find((s) => s.slug === slug)!
