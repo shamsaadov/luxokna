@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './styles/tokens.css'
 import './styles/reset.css'
 import './styles/globals.css'
@@ -10,6 +10,11 @@ import { localBusinessJsonLd } from '@/lib/seo'
 export const metadata: Metadata = {
   title: 'LuxOkna',
   description: 'Окна, двери, витражи в Грозном',
+  manifest: '/manifest.webmanifest',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#F2ECDF',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

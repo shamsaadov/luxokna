@@ -1,4 +1,4 @@
-import { makeMetadata } from '@/lib/seo'
+import { makeMetadata, contactLocalBusinessJsonLd } from '@/lib/seo'
 import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { generalFaq } from '@/content/faq'
@@ -8,8 +8,13 @@ import * as r from '@/app/styles/responsive.css'
 export const metadata = makeMetadata(seo.kontakty, '/kontakty')
 
 export default function Page() {
+  const lb = contactLocalBusinessJsonLd()
   return (
     <article className={r.article}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(lb) }}
+      />
       <section
         className={r.section}
         style={{ paddingTop: 'clamp(96px, 22vw, 160px)' }}

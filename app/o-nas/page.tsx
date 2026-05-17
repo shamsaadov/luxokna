@@ -2,7 +2,9 @@ import { makeMetadata } from '@/lib/seo'
 import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { brands } from '@/content/brands'
+import { objects } from '@/content/objects'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import { StatCounter } from '@/components/StatCounter/StatCounter'
 import * as r from '@/app/styles/responsive.css'
 
 export const metadata = makeMetadata(seo.oNas, '/o-nas')
@@ -30,6 +32,31 @@ export default function Page() {
             стандартных окон до структурных витражей. Работаем только с
             системами Schüco, Rehau и Alutech.
           </p>
+        </div>
+      </section>
+
+      {/* Trust signals — stats grid */}
+      <section className={r.section} aria-label="Цифры компании">
+        <SectionNumber n="00" title="В цифрах" />
+        <div className={r.grid4} style={{ marginTop: 48 }}>
+          <StatCounter
+            value={company.yearsOnMarket}
+            suffix="+"
+            label="Лет на рынке"
+          />
+          <StatCounter
+            value={objects.length}
+            label="Завершённых объектов"
+          />
+          <StatCounter
+            value={objects.reduce((sum, o) => sum + o.area, 0)}
+            suffix=" м²"
+            label="Остекления"
+          />
+          <StatCounter
+            value={brands.length}
+            label="Системных бренда"
+          />
         </div>
       </section>
 

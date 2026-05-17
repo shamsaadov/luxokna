@@ -17,6 +17,27 @@ export const nav = style({
   },
 })
 
+export const navRow = style({
+  display: 'flex',
+  gap: 16,
+  padding: '8px 64px 0',
+  fontFamily: 'var(--font-mono)',
+  fontSize: 13,
+  textTransform: 'uppercase',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  '@media': {
+    [MOBILE]: { padding: '6px clamp(20px, 5vw, 32px) 0', gap: 12 },
+    [TABLET]: { padding: '6px clamp(32px, 5vw, 64px) 0' },
+  },
+})
+
+export const navLabel = style({
+  color: 'var(--sand)',
+  marginRight: 4,
+  letterSpacing: '0.08em',
+})
+
 export const filterBtn = style({
   padding: '8px 0',
   borderBottom: '2px solid transparent',
@@ -24,6 +45,19 @@ export const filterBtn = style({
 
 export const filterActive = style({
   borderBottomColor: 'var(--copper)',
+})
+
+export const count = style({
+  padding: '12px 64px 0',
+  fontFamily: 'var(--font-mono)',
+  fontSize: 12,
+  textTransform: 'uppercase',
+  letterSpacing: '0.12em',
+  color: 'var(--sand)',
+  '@media': {
+    [MOBILE]: { padding: '12px clamp(20px, 5vw, 32px) 0' },
+    [TABLET]: { padding: '12px clamp(32px, 5vw, 64px) 0' },
+  },
 })
 
 export const grid = style({

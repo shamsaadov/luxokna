@@ -9,6 +9,8 @@ import { ServiceCard } from '@/components/ServiceCard/ServiceCard'
 import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { Marquee } from '@/components/Marquee/Marquee'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import { StatCounter } from '@/components/StatCounter/StatCounter'
+import { company } from '@/content/company'
 import { blurProps } from '@/lib/blur'
 import * as r from './styles/responsive.css'
 
@@ -75,6 +77,30 @@ export default function HomePage() {
           'Монтаж по ГОСТ 30971-2012',
         ]}
       />
+
+      {/* Trust signals — animated counters */}
+      <section
+        className={r.section}
+        style={{ paddingTop: 64, paddingBottom: 64 }}
+        aria-label="Цифры компании"
+      >
+        <div className={r.grid3}>
+          <StatCounter
+            value={company.yearsOnMarket}
+            suffix="+"
+            label="Лет на рынке"
+          />
+          <StatCounter
+            value={objects.length}
+            label="Завершённых объектов"
+          />
+          <StatCounter
+            value={objects.reduce((sum, o) => sum + o.area, 0)}
+            suffix=" м²"
+            label="Остекления"
+          />
+        </div>
+      </section>
 
       {/* 4 services */}
       <section className={r.section}>
