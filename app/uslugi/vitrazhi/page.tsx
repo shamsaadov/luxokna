@@ -7,8 +7,10 @@ import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { blurProps } from '@/lib/blur'
 import * as r from '@/app/styles/responsive.css'
+import * as f from '@/app/styles/faq.css'
 
 const SVC = getService('vitrazhi')!
 const jsonLd = {
@@ -19,6 +21,15 @@ const jsonLd = {
   areaServed: company.city,
   description: SVC.intro,
 }
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: SVC.faq.map((q) => ({
+    '@type': 'Question',
+    name: q.q,
+    acceptedAnswer: { '@type': 'Answer', text: q.a },
+  })),
+}
 export const metadata = makeMetadata(seo.vitrazhi, '/uslugi/vitrazhi')
 
 export default function Page() {
@@ -28,6 +39,13 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Breadcrumbs
+        items={[
+          { label: 'Главная', href: '/' },
+          { label: 'Услуги', href: '/uslugi/okna' },
+          { label: SVC.title },
+        ]}
       />
       <section className={r.hero}>
         <div>
@@ -75,6 +93,24 @@ export default function Page() {
           <div className={r.grid3} style={{ marginTop: 32 }}>
             {objs.slice(0, 6).map((o) => <ObjectCard key={o.slug} item={o} />)}
           </div>
+        </section>
+      )}
+
+      {SVC.faq.length > 0 && (
+        <section className={r.section} style={{ background: 'var(--paper)' }}>
+          <SectionNumber n="D" title="Вопросы" />
+          <div className={f.list}>
+            {SVC.faq.map((item) => (
+              <details key={item.q} className={f.item}>
+                <summary className={f.summary}>{item.q}</summary>
+                <div className={f.answer}>{item.a}</div>
+              </details>
+            ))}
+          </div>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
         </section>
       )}
     </article>

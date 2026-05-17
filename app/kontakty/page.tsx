@@ -3,6 +3,7 @@ import { seo } from '@/content/seo'
 import { company } from '@/content/company'
 import { generalFaq } from '@/content/faq'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import * as r from '@/app/styles/responsive.css'
 
 export const metadata = makeMetadata(seo.kontakty, '/kontakty')
@@ -14,6 +15,12 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(lb) }}
+      />
+      <Breadcrumbs
+        items={[
+          { label: 'Главная', href: '/' },
+          { label: 'Контакты' },
+        ]}
       />
       <section
         className={r.section}

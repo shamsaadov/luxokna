@@ -21,7 +21,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: devices['Desktop Chrome'],
-      testMatch: /(smoke|pass5)\.spec\.ts/,
+      testMatch: /(smoke|pass5|pass6)\.spec\.ts/,
     },
     {
       name: 'responsive-desktop',

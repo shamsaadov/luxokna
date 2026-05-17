@@ -5,6 +5,7 @@ import { brands } from '@/content/brands'
 import { objects } from '@/content/objects'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
 import { StatCounter } from '@/components/StatCounter/StatCounter'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import * as r from '@/app/styles/responsive.css'
 
 export const metadata = makeMetadata(seo.oNas, '/o-nas')
@@ -12,6 +13,12 @@ export const metadata = makeMetadata(seo.oNas, '/o-nas')
 export default function Page() {
   return (
     <article className={r.article}>
+      <Breadcrumbs
+        items={[
+          { label: 'Главная', href: '/' },
+          { label: 'О компании' },
+        ]}
+      />
       <section className={r.hero}>
         <div>
           <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--sand)' }}>

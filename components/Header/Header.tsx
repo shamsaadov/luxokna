@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import * as s from './Header.css'
 import { MagneticButton } from '../MagneticButton/MagneticButton'
@@ -18,6 +19,7 @@ const NAV = [
 export function Header({ onCalcOpen }: { onCalcOpen: () => void }) {
   const last = useRef(0)
   const [hidden, setHidden] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,11 +37,19 @@ export function Header({ onCalcOpen }: { onCalcOpen: () => void }) {
         LUX·OKNA
       </Link>
       <nav className={s.nav}>
-        {NAV.map((n) => (
-          <Link key={n.href} href={n.href} data-cursor>
-            {n.label}
-          </Link>
-        ))}
+        {NAV.map((n) => {
+          const active = pathname === n.href
+          return (
+            <Link
+              key={n.href}
+              href={n.href}
+              data-cursor
+              aria-current={active ? 'page' : undefined}
+            >
+              {n.label}
+            </Link>
+          )
+        })}
       </nav>
       <div className={s.actions}>
         <div className={s.cta}>
