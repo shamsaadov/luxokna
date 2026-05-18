@@ -9,8 +9,8 @@ import { ObjectCard } from '@/components/ObjectCard/ObjectCard'
 import { Marquee } from '@/components/Marquee/Marquee'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
 import { StatCounter } from '@/components/StatCounter/StatCounter'
+import { HeroCalculator } from '@/components/HeroCalculator/HeroCalculator'
 import { company } from '@/content/company'
-import { blurMap } from '@/content/blurMap'
 import * as r from './styles/responsive.css'
 
 export const metadata = makeMetadata(seo.home, '/')
@@ -44,45 +44,8 @@ export default function HomePage() {
             подоконники. Производство в собственном цеху.
           </p>
         </div>
-        <div
-          style={{
-            position: 'relative',
-            aspectRatio: '3/4',
-            maxHeight: 560,
-            overflow: 'hidden',
-            background: 'var(--boneDeep)',
-            width: '100%',
-            backgroundImage: blurMap['/images/home/hero.jpg']
-              ? `url("${blurMap['/images/home/hero.jpg']}")`
-              : undefined,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <picture>
-            <source
-              srcSet="/images/home/hero.avif 1x, /images/home/hero@2x.avif 2x"
-              type="image/avif"
-            />
-            <source
-              srcSet="/images/home/hero.jpg 1x, /images/home/hero@2x.jpg 2x"
-              type="image/jpeg"
-            />
-            <img
-              src="/images/home/hero.jpg"
-              alt="Премиум-окна LuxOkna"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
-            />
-          </picture>
+        <div style={{ width: '100%' }}>
+          <HeroCalculator />
         </div>
       </section>
 
