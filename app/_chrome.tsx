@@ -8,6 +8,8 @@ import { WhatsAppFab } from '@/components/WhatsAppFab/WhatsAppFab'
 import { Cursor } from '@/components/Cursor/Cursor'
 import { MobileCtaBar } from '@/components/MobileCtaBar/MobileCtaBar'
 import { ScrollProgress } from '@/components/ScrollProgress/ScrollProgress'
+import { InstallBanner } from '@/components/InstallBanner/InstallBanner'
+import Vitals from './_vitals'
 import { useSmoothScroll } from '@/lib/scroll'
 import * as s from './_chrome.css'
 
@@ -54,7 +56,9 @@ export function Chrome({
       <Footer />
       <WhatsAppFab />
       <MobileCtaBar onCalcOpen={() => setOpen(true)} hidden={open} />
+      <InstallBanner />
       <Calculator open={open} onClose={() => setOpen(false)} />
+      <Vitals />
     </>
   )
 }

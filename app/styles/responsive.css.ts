@@ -20,14 +20,13 @@ export const article = style({
   },
 })
 
-/** Hero section: 5fr 7fr on desktop, single column on mobile, fluid padding. */
+/** Hero section: 6fr 5fr on desktop (text-forward), single column on mobile, fluid padding. */
 export const hero = style({
   display: 'grid',
-  gridTemplateColumns: '5fr 7fr',
+  gridTemplateColumns: '6fr 5fr',
   alignItems: 'end',
   gap: 48,
-  padding: '160px 64px 64px',
-  minHeight: '92vh',
+  padding: '140px 64px 72px',
   '@media': {
     [MOBILE]: {
       gridTemplateColumns: '1fr',

@@ -36,7 +36,11 @@ export const tag = style({
 })
 
 export const media = style({
-  aspectRatio: '21 / 9',
+  aspectRatio: '21 / 8',
   overflow: 'hidden',
   position: 'relative',
+  maxHeight: 320,
+  '@media': {
+    'screen and (max-width: 640px)': { aspectRatio: '16 / 9', maxHeight: 200 },
+  },
 })

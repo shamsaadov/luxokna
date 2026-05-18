@@ -40,9 +40,11 @@ export function Calculator({ open, onClose }: Props) {
     }
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    document.body.dataset.calcOpen = 'true'
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = prevOverflow
+      delete document.body.dataset.calcOpen
     }
   }, [open, onClose])
 

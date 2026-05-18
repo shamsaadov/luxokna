@@ -5,7 +5,10 @@ globalStyle('html', {
   fontSize: '16px',
   textRendering: 'optimizeLegibility',
   WebkitFontSmoothing: 'antialiased',
-  overflowX: 'hidden',
+  // overflow-x: clip — modern equivalent of hidden that does NOT create a
+  // scroll container, so Lenis wheel events keep working. Lenis only complains
+  // about overflow: hidden.
+  overflowX: 'clip',
 })
 
 globalStyle('body', {
@@ -15,7 +18,7 @@ globalStyle('body', {
   fontSize: vars.fontSize.body,
   lineHeight: vars.lineHeight.body,
   fontFeatureSettings: '"ss01" on, "ss02" on',
-  overflowX: 'hidden',
+  overflowX: 'clip',
 })
 
 globalStyle('::selection', {

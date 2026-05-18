@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { makeMetadata } from '@/lib/seo'
 import { seo } from '@/content/seo'
 import { services } from '@/content/services'
@@ -11,7 +10,7 @@ import { Marquee } from '@/components/Marquee/Marquee'
 import { SectionNumber } from '@/components/SectionNumber/SectionNumber'
 import { StatCounter } from '@/components/StatCounter/StatCounter'
 import { company } from '@/content/company'
-import { blurProps } from '@/lib/blur'
+import { blurMap } from '@/content/blurMap'
 import * as r from './styles/responsive.css'
 
 export const metadata = makeMetadata(seo.home, '/')
@@ -48,21 +47,42 @@ export default function HomePage() {
         <div
           style={{
             position: 'relative',
-            aspectRatio: '4/5',
+            aspectRatio: '3/4',
+            maxHeight: 560,
             overflow: 'hidden',
             background: 'var(--boneDeep)',
             width: '100%',
+            backgroundImage: blurMap['/images/home/hero.jpg']
+              ? `url("${blurMap['/images/home/hero.jpg']}")`
+              : undefined,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         >
-          <Image
-            src="/images/home/hero.jpg"
-            alt="Премиум-окна LuxOkna"
-            fill
-            priority
-            sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 60vw"
-            style={{ objectFit: 'cover' }}
-            {...blurProps('/images/home/hero.jpg')}
-          />
+          <picture>
+            <source
+              srcSet="/images/home/hero.avif 1x, /images/home/hero@2x.avif 2x"
+              type="image/avif"
+            />
+            <source
+              srcSet="/images/home/hero.jpg 1x, /images/home/hero@2x.jpg 2x"
+              type="image/jpeg"
+            />
+            <img
+              src="/images/home/hero.jpg"
+              alt="Премиум-окна LuxOkna"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </picture>
         </div>
       </section>
 
@@ -112,14 +132,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Portfolio strip */}
+      {/* Portfolio strip — only 3 highlights on home; full set on /obyekty */}
       <section className={r.section} style={{ background: 'var(--paper)' }}>
         <SectionNumber n="02" title="Объекты" />
         <div className={r.grid3} style={{ marginTop: 48 }}>
-          {objects.slice(0, 6).map((o) => (
+          {objects.slice(0, 3).map((o) => (
             <ObjectCard key={o.slug} item={o} />
           ))}
         </div>
+        <p style={{ marginTop: 32, fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+          <a href="/obyekty" data-cursor style={{ borderBottom: '1px solid var(--char)', paddingBottom: 2 }}>
+            Все объекты →
+          </a>
+        </p>
       </section>
 
       {/* Process */}

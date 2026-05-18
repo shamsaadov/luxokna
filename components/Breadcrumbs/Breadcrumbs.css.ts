@@ -33,6 +33,7 @@ export const item = style({
 })
 
 export const link = style({
+  position: 'relative',
   color: vars.color.sand,
   textDecoration: 'none',
   transition: `color ${vars.duration.fast} ${vars.ease.out}`,
@@ -40,6 +41,22 @@ export const link = style({
   ':focus-visible': {
     outline: `${vars.rule.thin} solid ${vars.color.copper}`,
     outlineOffset: '2px',
+  },
+  '::after': {
+    content: '""',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: '-3px',
+    height: '1px',
+    backgroundColor: vars.color.copper,
+    transform: 'scaleX(0)',
+    transformOrigin: 'left center',
+    transition: `transform 250ms ${vars.ease.out}`,
+  },
+  selectors: {
+    '&:hover::after': { transform: 'scaleX(1)' },
+    '&:focus-visible::after': { transform: 'scaleX(1)' },
   },
 })
 
